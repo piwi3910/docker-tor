@@ -1,5 +1,8 @@
 dist: focal
 language: minimal
+env:
+  - ARCH="linux/arm/v6,linux/arm/v7,linux/arm64,linux/amd64"
+  - IMAGE_NAME="tor-proxy"
 
 services:
   - docker
@@ -29,25 +32,25 @@ jobs:
   include:
   - stage: dev
     script:
-    - docker buildx create --name mybuilder --platform linux/arm,linux/arm64,linux/amd64
+    - docker buildx create --name mybuilder --platform $ARCH
     - docker buildx use mybuilder
     - docker buildx inspect
     - docker buildx inspect --bootstrap
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-    - docker buildx build --platform linux/arm/v6,linux/arm/v7,linux/arm64,linux/amd64 -t piwi3910/tor-proxy:dev . --push
+    - docker buildx build --platform $ARCH -t ${DOCKER_USERNAME}/${IMAGE_NAME}:dev . --push
 
   - stage: prod
     script:
-    - docker buildx create --name mybuilder --platform linux/arm,linux/arm64,linux/amd64
+    - docker buildx create --name mybuilder --platform $ARCH
     - docker buildx use mybuilder
     - docker buildx inspect
     - docker buildx inspect --bootstrap
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-    - docker buildx build --platform linux/arm/v6,linux/arm/v7,linux/arm64,linux/amd64 -t piwi3910/tor-proxy:$TRAVIS_TAG -t piwi3910/tor-proxy:latest . --push
+    - docker buildx build --platform $ARCH -t ${DOCKER_USERNAME}/${IMAGE_NAME}:${TRAVIS_TAG} -t ${DOCKER_USERNAME}/${IMAGE_NAME}:latest . --push
 
   - stage: dockerhub_readme
     script:
-    - docker run -v $PWD:/workspace -e DOCKERHUB_USERNAME=$DOCKER_USERNAME -e DOCKERHUB_PASSWORD=$DOCKER_PASSWORD -e DOCKERHUB_REPOSITORY=piwi3910/tor-proxy -e README_FILEPATH=/workspace/README.md peterevans/dockerhub-description:2
+    - docker run -v $PWD:/workspace -e DOCKERHUB_USERNAME=$DOCKER_USERNAME -e DOCKERHUB_PASSWORD=$DOCKER_PASSWORD -e DOCKERHUB_REPOSITORY=${DOCKER_USERNAME}/${IMAGE_NAME} -e README_FILEPATH=/workspace/README.md peterevans/dockerhub-description:2
   
 
   
