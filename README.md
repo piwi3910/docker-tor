@@ -9,7 +9,7 @@
 [![Docker image size](https://img.shields.io/docker/image-size/piwi3910/tor-proxy/latest)](https://hub.docker.com/r/piwi3910/tor/tags)
 [![Youtube Channel](https://img.shields.io/youtube/channel/views/UCpNg_I2e8d5_6fU_OOKVG7Q?style=social)](https://www.youtube.com/channel/UCpNg_I2e8d5_6fU_OOKVG7Q)
 [![Youtube Subs](https://img.shields.io/youtube/channel/subscribers/UCpNg_I2e8d5_6fU_OOKVG7Q?style=social)](https://www.youtube.com/channel/UCpNg_I2e8d5_6fU_OOKVG7Q?sub_confirmation=1)
-[![Discord](https://img.shields.io/discord/719782239466160139)](https://www.youtube.com/channel/UCpNg_I2e8d5_6fU_OOKVG7Q?sub_confirmation=1)
+[![Discord](https://img.shields.io/discord/719782239466160139)](https://discord.gg/cHMftfe)
 
 [![Docker Hub badge](http://dockeri.co/image/piwi3910/tor)](https://hub.docker.com/r/piwi3910/tor/)
 
