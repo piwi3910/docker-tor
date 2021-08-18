@@ -6,13 +6,13 @@ SocksPort 0.0.0.0:9150
 
 ## Entry policies to allow/deny SOCKS requests based on IP address.
 ## SocksPolicy accept 192.168.1.0/24
-SocksPolicy accept *
-*SocksPolicy reject *
+#SocksPolicy accept 10.0.0.0/16
+#SocksPolicy reject *
 
 ## Logs go to stdout at level "notice"
 Log notice stdout
 
-ControlPort 9051
+ControlPort 0.0.0.0:9051
 
 # Try for at most NUM seconds when building circuits. If the circuit isn't open in that time, give up on it. (Default: 1 minute.)           
 CircuitBuildTimeout 5                                                                                                                       
@@ -22,3 +22,6 @@ KeepalivePeriod 60
 NewCircuitPeriod 15                                                                                                                       
 # How many entry guards should we keep at a time?                                                                                           
 NumEntryGuards 8
+
+# Default password set to "my_password" overwrite via variable if set
+HashedControlPassword 16:E600ADC1B52C80BB6022A0E999A7734571A451EB6AE50FED489B72E3DF 
