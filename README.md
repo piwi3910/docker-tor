@@ -13,8 +13,6 @@
 
 [![Docker Hub badge](http://dockeri.co/image/piwi3910/tor)](https://hub.docker.com/r/piwi3910/tor/)
 
-<iframe src="https://discord.com/widget?id=719782239466160139&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
-
 This container runs a packaged tor socks proxy for the privacy focused individual
 
 ## Features
