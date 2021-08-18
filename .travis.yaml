@@ -1,0 +1,14 @@
+dist: bionic
+language: minimal
+
+services:
+  - docker
+
+addons:
+  apt:
+    packages:
+      - qemu
+      - binfmt-support
+      - qemu-user-static
+
+  
