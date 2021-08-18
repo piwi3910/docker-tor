@@ -5,8 +5,8 @@
 # Docker-tor
 ![license](https://img.shields.io/badge/license-GPLv3.0-brightgreen.svg?style=flat)
 [![Build Status](https://img.shields.io/travis/com/piwi3910/docker-tor/master)](https://travis-ci.com/piwi3910/docker-tor)
-[![Docker Hub pulls](https://img.shields.io/docker/pulls/piwi3910/tor.svg)](https://hub.docker.com/r/piwi3910/tor/)
-[![Docker image size](https://img.shields.io/docker/image-size/piwi3910/tor/latest)](https://hub.docker.com/r/piwi3910/tor/tags)
+[![Docker Hub pulls](https://img.shields.io/docker/pulls/piwi3910/tor-proxy.svg)](https://hub.docker.com/r/piwi3910/tor/)
+[![Docker image size](https://img.shields.io/docker/image-size/piwi3910/tor-proxy/latest)](https://hub.docker.com/r/piwi3910/tor/tags)
 [![Youtube Channel](https://img.shields.io/youtube/channel/views/UCpNg_I2e8d5_6fU_OOKVG7Q?style=social)](https://www.youtube.com/channel/UCpNg_I2e8d5_6fU_OOKVG7Q)
 [![Youtube Subs](https://img.shields.io/youtube/channel/subscribers/UCpNg_I2e8d5_6fU_OOKVG7Q?style=social)](https://www.youtube.com/channel/UCpNg_I2e8d5_6fU_OOKVG7Q?sub_confirmation=1)
 
@@ -31,20 +31,20 @@ Github: [https://github.com/piwi3910/docker-tor](https://github.com/piwi3910/doc
 
 ### Socks only - **no** controle port
 ```
-docker run -p 9150:9150 docker-tor:latest
+docker run -p 9150:9150 piwi3910/tor-proxy:latest
 ```
 
 ---
 ### Socks + control port - **default** password
 ```
-docker run -p 9150:9150 -p 9051:9051 docker-tor:latest
+docker run -p 9150:9150 -p 9051:9051 piwi3910/tor-proxy:latest
 ```
 *Default control port password:* **my_password**
 
 ---
 ### Socks + control port - **your** password
 ```
-docker run -p 9150:9150 -p 9051:9051 -e control_password=somepassword docker-tor:latest
+docker run -p 9150:9150 -p 9051:9051 -e control_password=somepassword piwi3910/tor-proxy:latest
 ```
 
 ---
