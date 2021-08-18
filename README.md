@@ -11,8 +11,6 @@
 [![Youtube Subs](https://img.shields.io/youtube/channel/subscribers/UCpNg_I2e8d5_6fU_OOKVG7Q?style=social)](https://www.youtube.com/channel/UCpNg_I2e8d5_6fU_OOKVG7Q?sub_confirmation=1)
 [![Discord](https://img.shields.io/discord/719782239466160139)](https://discord.gg/cHMftfe)
 
-[![Docker Hub badge](http://dockeri.co/image/piwi3910/tor)](https://hub.docker.com/r/piwi3910/tor/)
-
 This container runs a packaged tor socks proxy for the privacy focused individual
 
 ## Features
