@@ -17,12 +17,20 @@ before_install:
   - sudo apt-get update
   - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
 
-script:
-- docker buildx create --name mybuilder --platform linux/arm,linux/arm64,linux/amd64
-- docker buildx use mybuilder
-- docker buildx inspect
-- docker buildx inspect --bootstrap
-- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-- docker buildx build --platform linux/arm/v6,linux/arm/v7,linux/arm64,linux/amd64 -t piwi3910/tor-proxy:latest . --push
+stages:
+  - name: dev
+    if: branch = master
+
+
+jobs:
+  include:
+  - stage: dev
+    script:
+    - docker buildx create --name mybuilder --platform linux/arm,linux/arm64,linux/amd64
+    - docker buildx use mybuilder
+    - docker buildx inspect
+    - docker buildx inspect --bootstrap
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+    - docker buildx build --platform linux/arm/v6,linux/arm/v7,linux/arm64,linux/amd64 -t piwi3910/tor-proxy:dev . --push
 
   
