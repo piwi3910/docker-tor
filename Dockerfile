@@ -1,5 +1,9 @@
 FROM alpine:latest
 
+LABEL maintainer="Pascal Watteel <pascal@watteel.be>"
+LABEL name="tor-proxy"
+LABEL version="latest"
+
 RUN apk update && \
     apk add --no-cache tor --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ --allow-untrusted && \
     rm /var/cache/apk/*
