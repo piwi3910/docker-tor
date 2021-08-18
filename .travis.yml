@@ -12,6 +12,7 @@ addons:
       - qemu
       - binfmt-support
       - qemu-user-static
+      - jq
 
 before_install:
   - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -20,15 +21,34 @@ before_install:
   - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
 
 stages:
+  - name: test
+    if: branch = master or tag IS present
   - name: dev
     if: branch = master
   - name: prod
     if: tag IS present
-  - name: dockerhub_readme    
+  - name: dockerhub_readme
+
 
 
 jobs:
   include:
+  - stage: test
+    script:
+    - docker buildx create --name mybuilder --platform $ARCH
+    - docker buildx use mybuilder
+    - docker buildx inspect
+    - docker buildx inspect --bootstrap
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+    - docker buildx build --platform $ARCH -t ${DOCKER_USERNAME}/${IMAGE_NAME}:test_${TRAVIS_TAG} . --push
+    - docker run -d --restart=always --name tor-proxy -p 9150:9150 ${DOCKER_USERNAME}/${IMAGE_NAME}:test_${TRAVIS_TAG}
+    - sleep 60
+    - curl --fail --socks5-hostname localhost:9150 -I -L 'https://www.facebookwkhpilnemxj7asaniu7vnjjbiltxjqhye3mhbshg7kx5tfyd.onion/' || exit 1
+    - |
+      HUB_TOKEN=$(curl -s -H "Content-Type: application/json" -X POST -d '{"username": "'{$DOCKER_USERNAME}'", "password": "'${$DOCKER_PASSWORD}'"}' https://hub.docker.com/v2/users/login/ | jq -r .token)
+      curl -i -X DELETE -H "Accept: application/json" -H "Authorization: JWT $HUB_TOKEN" https://hub.docker.com/v2/repositories/${DOCKER_USERNAME}/${IMAGE_NAME}/tags/test_${TRAVIS_TAG}/
+
+
   - stage: dev
     script:
     - docker buildx create --name mybuilder --platform $ARCH
