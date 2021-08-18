@@ -47,7 +47,7 @@ jobs:
 
   - stage: dockerhub_readme
     script:
-    - docker run -e DOCKERHUB_USERNAME=$DOCKER_USERNAME -e DOCKERHUB_PASSWORD=$DOCKER_PASSWORD -e DOCKERHUB_REPOSITORY=piwi3910/tor-proxy -e README_FILEPATH=README.md peterevans/dockerhub-description:2
+    - docker run -v $PWD:/workspace -e DOCKERHUB_USERNAME=$DOCKER_USERNAME -e DOCKERHUB_PASSWORD=$DOCKER_PASSWORD -e DOCKERHUB_REPOSITORY=piwi3910/tor-proxy -e README_FILEPATH=/workspace/README.md peterevans/dockerhub-description:2
   
 
   
