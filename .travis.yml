@@ -23,6 +23,6 @@ script:
 - docker buildx inspect
 - docker buildx inspect --bootstrap
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-- docker buildx build --platform linux/arm,linux/arm64,linux/amd64 -t piwi3910/tor:latest . --push
+- docker buildx build --platform linux/arm/v6,linux/arm/v7,linux/arm64,linux/amd64 -t piwi3910/tor:latest . --push
 
   
