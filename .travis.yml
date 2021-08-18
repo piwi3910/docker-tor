@@ -20,7 +20,8 @@ before_install:
 stages:
   - name: dev
     if: branch = master
-  - name: prod  
+  - name: prod
+    if: tag IS present  
 
 
 jobs:
