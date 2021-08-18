@@ -20,6 +20,7 @@ before_install:
 stages:
   - name: dev
     if: branch = master
+  - name: prod  
 
 
 jobs:
@@ -32,5 +33,16 @@ jobs:
     - docker buildx inspect --bootstrap
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
     - docker buildx build --platform linux/arm/v6,linux/arm/v7,linux/arm64,linux/amd64 -t piwi3910/tor-proxy:dev . --push
+
+  - stage: prod
+    on:
+      tags: true
+    script:
+    - docker buildx create --name mybuilder --platform linux/arm,linux/arm64,linux/amd64
+    - docker buildx use mybuilder
+    - docker buildx inspect
+    - docker buildx inspect --bootstrap
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+    - docker buildx build --platform linux/arm/v6,linux/arm/v7,linux/arm64,linux/amd64 -t piwi3910/tor-proxy:$TRAVIS_TAG -t piwi3910/tor-proxy:latest . --push
 
   
