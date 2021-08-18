@@ -16,4 +16,13 @@ before_install:
   - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
   - sudo apt-get update
   - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
+
+script:
+- docker buildx create --name mybuilder --platform linux/arm,linux/arm64,linux/amd64
+- docker buildx use mybuilder
+- docker buildx inspect
+- docker buildx inspect --bootstrap
+- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+- docker buildx build --platform linux/arm,linux/arm64,linux/amd64 -t piwi3910/tor:latest . --push
+
   
