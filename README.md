@@ -11,7 +11,9 @@
 [![Youtube Subs](https://img.shields.io/youtube/channel/subscribers/UCpNg_I2e8d5_6fU_OOKVG7Q?style=social)](https://www.youtube.com/channel/UCpNg_I2e8d5_6fU_OOKVG7Q?sub_confirmation=1)
 [![Discord](https://img.shields.io/discord/719782239466160139)](https://discord.gg/cHMftfe)
 
-This container runs a packaged tor socks proxy for the privacy focused individual
+## Code
+
+[https://github.com/piwi3910/docker-tor](https://github.com/piwi3910/docker-tor)
 
 ## Features
 
@@ -23,8 +25,6 @@ This container runs a packaged tor socks proxy for the privacy focused individua
 * set the control port password on runtime
 * weekly rebuild of dev to include the latest alpine updates
 * All code provide in Github, so you can build it yourself if you don't trust me (You shouldn't trust anyone with your own privacy!)
-
-Github: [https://github.com/piwi3910/docker-tor](https://github.com/piwi3910/docker-tor)
 
 ## Docker tags available
 
