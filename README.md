@@ -55,5 +55,10 @@ find socks proxy and fill in the ip of your synology or docker host with port **
 
 `If you run this locally on your pc (localhost) or else the ip of your synology`
 
+## Default TOR settings
+* A docker Healthcheck will start running after 60 sec and connect to facebook over tor to verify tor is up and running,
+It will restart the container if the tor connection goes down, Make sure to start your container with --restart-always to make sure
+tor auto-heals
+* tor will try to create an new circuit every 15 sec
 
 happy private browsing!
