@@ -31,20 +31,20 @@ Github: [https://github.com/piwi3910/docker-tor](https://github.com/piwi3910/doc
 
 ### Socks only - **no** controle port
 ```
-docker run -p 9150:9150 piwi3910/tor-proxy:latest
+docker run -d --restart=always --name tor-proxy -p 9150:9150 piwi3910/tor-proxy:latest
 ```
 
 ---
 ### Socks + control port - **default** password
 ```
-docker run -p 9150:9150 -p 9051:9051 piwi3910/tor-proxy:latest
+docker run -d --restart=always --name tor-proxy -p 9150:9150 -p 9051:9051 piwi3910/tor-proxy:latest
 ```
 *Default control port password:* **my_password**
 
 ---
 ### Socks + control port - **your** password
 ```
-docker run -p 9150:9150 -p 9051:9051 -e control_password=somepassword piwi3910/tor-proxy:latest
+docker run -d --restart=always --name tor-proxy -p 9150:9150 -p 9051:9051 -e control_password=somepassword piwi3910/tor-proxy:latest
 ```
 
 ---
