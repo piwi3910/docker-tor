@@ -1,4 +1,14 @@
+<p align="center">
+  <img width="300px" src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Tor_project_logo_hq.png">
+</p>
+
 # Docker-tor
+![license](https://img.shields.io/badge/license-GPLv3.0-brightgreen.svg?style=flat)
+[![Build Status](https://img.shields.io/travis/com/piwi3910/docker-tor/master)](https://travis-ci.com/piwi3910/docker-tor)
+[![Docker Hub pulls](https://img.shields.io/docker/pulls/piwi3910/tor.svg)](https://hub.docker.com/r/piwi3910/tor/)
+[![Docker image size](https://img.shields.io/docker/image-size/piwi3910/tor/latest)](https://hub.docker.com/r/piwi3910/tor/tags)
+
+[![Docker Hub badge](http://dockeri.co/image/piwi3910/tor)](https://hub.docker.com/r/piwi3910/tor/)
 
 This container runs a packaged tor socks proxy for the privacy focused individual
 
