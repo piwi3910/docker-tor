@@ -1,3 +1,5 @@
+HardwareAccel 1
+
 ## The directory for keeping all the keys/etc
 DataDirectory /var/lib/tor
 
