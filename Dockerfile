@@ -5,7 +5,8 @@ LABEL name="tor-proxy"
 LABEL version="latest"
 
 RUN apk update && \
-    apk add --no-cache tor zstd --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ --allow-untrusted && \
+    apk add --no-cache zstd=1.5.0-r0 --repository http://dl-cdn.alpinelinux.org/alpine/edge/main/ --allow-untrusted && \
+    apk add --no-cache tor --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ --allow-untrusted && \
     rm /var/cache/apk/*
 
 EXPOSE 9150 9051
