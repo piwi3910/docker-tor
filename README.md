@@ -21,10 +21,18 @@ This container runs a packaged tor socks proxy for the privacy focused individua
 * run with a special "tor_runner" user and not the default tor package user or root
 * open up the control port if you want and secure it
 * set the control port password on runtime
-* weekly rebuild to include the latest alpine updates
+* weekly rebuild of dev to include the latest alpine updates
 * All code provide in Github, so you can build it yourself if you don't trust me (You shouldn't trust anyone with your own privacy!)
 
 Github: [https://github.com/piwi3910/docker-tor](https://github.com/piwi3910/docker-tor)
+
+## Docker tags available
+
+All builds are multi-arch for: AMD64, ARM 32bit and ARM 64bit
+
+* dev: latest release based on master github code -> use to get the latest features, but could be unstable
+* v1.0.0: tags with versions are stable releases
+* latest: This tag follows the latest stable version release NOT dev 
 
 ## Usage
 
