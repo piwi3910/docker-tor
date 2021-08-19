@@ -35,16 +35,11 @@ jobs:
   - stage: test
     script:
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-    - docker build -t ${DOCKER_USERNAME}/${IMAGE_NAME}:test_${TRAVIS_COMMIT} .
-    - docker push ${DOCKER_USERNAME}/${IMAGE_NAME}:test_${TRAVIS_COMMIT}
-    - docker run -d --restart=always --name tor-proxy -p 9150:9150 ${DOCKER_USERNAME}/${IMAGE_NAME}:test_${TRAVIS_COMMIT}
-    - sleep 60
+    - docker build -t ${IMAGE_NAME}:test_${TRAVIS_COMMIT} .
+    - docker run -d --restart=always --name tor-proxy -p 9150:9150 ${IMAGE_NAME}:test_${TRAVIS_COMMIT}
+    - sleep 30
     - curl --fail --socks5-hostname localhost:9150 -I -L 'https://www.facebookwkhpilnemxj7asaniu7vnjjbiltxjqhye3mhbshg7kx5tfyd.onion/' || exit 1
-    - |
-      HUB_TOKEN=$(curl -s -H "Content-Type: application/json" -X POST -d '{"username": "$DOCKER_USERNAME", "password": "$DOCKER_PASSWORD"}' https://hub.docker.com/v2/users/login/ | jq -r .token)
-      curl -i -X DELETE -H "Accept: application/json" -H "Authorization: JWT $HUB_TOKEN" https://hub.docker.com/v2/repositories/${DOCKER_USERNAME}/${IMAGE_NAME}/tags/test_${TRAVIS_COMMIT}/
-
-
+  
   - stage: dev
     script:
     - docker buildx create --name mybuilder --platform $ARCH
