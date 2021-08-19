@@ -22,7 +22,6 @@ before_install:
 
 stages:
   - name: test
-    if: branch = master or tag IS present
   - name: dev
     if: branch = master
   - name: prod
