@@ -35,7 +35,8 @@ jobs:
   - stage: test
     script:
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-    - docker build -t ${DOCKER_USERNAME}/${IMAGE_NAME}:test_${TRAVIS_COMMIT} . --push
+    - docker build -t ${DOCKER_USERNAME}/${IMAGE_NAME}:test_${TRAVIS_COMMIT} .
+    - docker push ${DOCKER_USERNAME}/${IMAGE_NAME}:test_${TRAVIS_COMMIT}
     - docker run -d --restart=always --name tor-proxy -p 9150:9150 ${DOCKER_USERNAME}/${IMAGE_NAME}:test_${TRAVIS_COMMIT}
     - sleep 60
     - curl --fail --socks5-hostname localhost:9150 -I -L 'https://www.facebookwkhpilnemxj7asaniu7vnjjbiltxjqhye3mhbshg7kx5tfyd.onion/' || exit 1
