@@ -1,4 +1,4 @@
-FROM alpine:3.14
+FROM piwi3910/alpine:latest
 
 LABEL maintainer="Pascal Watteel <pascal@watteel.be>"
 LABEL name="tor-proxy"
